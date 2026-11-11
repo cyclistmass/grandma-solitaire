@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!--
+      Safe for grandma: this page loads nothing from anywhere but its own folder, runs no third-party script, and
+      talks to no server except the game's own family-rooms database (see PRIVACY.md).
+      The build (gradle/privacy.gradle.kts, run by ./gradlew checkPrivacy) fails if this policy is loosened.
+    -->
+    <meta http-equiv="Content-Security-Policy"
+          content="default-src 'self'; script-src 'self' 'wasm-unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; connect-src 'self' https://grandma-solitaire-349c6-default-rtdb.firebaseio.com; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; worker-src 'self'">
+    <meta name="referrer" content="no-referrer">
+    <title>Grandparent Solitaire</title>
+    <style>
+        html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #1E6B3A; }
+        #root { width: 100%; height: 100%; }
+        #loading { position: fixed; inset: 0; display: flex; align-items: center; justify-content: center;
+                   font: 32px sans-serif; color: #fff; }
+        #loading.too-old { flex-direction: column; padding: 24px; text-align: center; font-size: 26px; line-height: 1.4; }
+    </style>
+    <script type="application/javascript" src="check.js"></script>
+    <script type="application/javascript" src="grandma.js"></script>
+</head>
+<body>
+<div id="loading">Loading the cards...</div>
+<div id="root"></div>
+</body>
+</html>
